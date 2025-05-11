@@ -1,0 +1,27 @@
+require("PHPMailer/class.PHPMailer.php");
+        $mail = new PHPMailer();
+        $mail->isSMTP();
+        $mail->SMTPDebug = 2;
+        $mail->Host = "smtp.gmail.com";
+        $mail->SMTPAuth = true;
+        $mail->AuthType = 'NTLM';
+        // But you can comment from here
+        $mail->SMTPSecure = "tls";
+        $mail->Port = 587;
+        $mail->CharSet = "UTF-8";
+        // To here. 'cause default secure is TLS.
+
+        $mail->setFrom("myproductanalysis@gmail.com", "Recover Team");
+        $mail->Username = "myproductanalysis@gmail.com";
+        $mail->Password = "ntnwtjevlrflisvb";  //!@1234qwer
+
+        $mail->Subject = "Password Recover";
+        $mail->msgHTML($msg);
+        $mail->addAddress($email);
+
+        if (!$mail->send()) {
+        $mail->ErrorInfo;
+        } else {
+            echo "<script> alert('Password sent on registered email.');
+                 window.close(); </script>";
+        }
